@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7
 import sys
 import os
 import re
@@ -6,13 +6,12 @@ import re
 
 def sendComment(message_):
     pr_url = os.environ['ghprbPullLink']
-    # pr_url = "https://github.com/tmikota/、/pull/56"
     pr_url = pr_url.replace("github.com/", "api.github.com/repos/")
     pr_url = pr_url.replace("pull", "pulls")
     repo = pr_url.split("/")
     user, repo = repo[-4:-2]
     from pygithub3 import Github
-    gh = Github(user=user, token='8d8633280b122c923247adf7a8c1a5c2aaf65eab', repo=repo)
+    gh = Github(user=user, token='6f05cf46b09e909138d384937d71a2fb5b65abaa', repo=repo)
     for x in gh.issues.list_by_repo().all():
         if hasattr(x, "pull_request"):
             if x.pull_request.url == pr_url:
@@ -22,7 +21,7 @@ def sendComment(message_):
 
 # ws = '/Users/haolong/PycharmProjects/magicMenu'
 ws = os.environ['WORKSPACE']
-f = file(os.path.join(ws, "o、utput.txt"))
+f = file(os.path.join(ws, "output.txt"))
 found = False
 
 
